@@ -21,17 +21,6 @@ P
 ```
 import socket
 s = socket.socket()
-s.connect(('localhost', 7000))
-while True:
-    ip = input("Enter logical Address : ")
-    s.send(ip.encode())
-    print("MAC Address:", s.recv(1024).decode())
-
-```
-## SERVER:
-```
-import socket
-s = socket.socket()
 s.bind(('localhost', 7000))
 s.listen(5)
 c, addr = s.accept()
@@ -45,21 +34,21 @@ while True:
     except KeyError:
         c.send("Not Found".encode())
 ```
+## SERVER:
+```
+import socket
+s = socket.socket()
+s.connect(('localhost', 7000))
+while True:
+    ip = input("Enter logical Address : ")
+    s.send(ip.encode())
+    print("MAC Address:", s.recv(1024).decode())
+```
 ## OUPUT - ARP:
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/5460d027-63a9-4052-a9fe-4c1f082a73b7" />
 
 ## PROGRAM - RARP:
 ## CLIENT:
-```
-import socket 
-s=socket.socket() 
-s.connect(('localhost',9000)) 
-while True: 
-    ip=input("Enter MAC Address : ") 
-    s.send(ip.encode()) 
-    print("Logical Address",s.recv(1024).decode())
-```
-## SERVER:
 ```
 import socket 
 s=socket.socket() 
@@ -73,6 +62,17 @@ while True:
                 c.send(address[ip].encode()) 
             except KeyError: 
                 c.send("Not Found".encode())
+```
+## SERVER:
+```
+import socket 
+s=socket.socket() 
+s.connect(('localhost',9000)) 
+while True: 
+    ip=input("Enter MAC Address : ") 
+    s.send(ip.encode()) 
+    print("Logical Address",s.recv(1024).decode())
+
 ```
 ## OUPUT -RARP:
 <img width="1913" height="1069" alt="image" src="https://github.com/user-attachments/assets/8b18a909-75ce-4a33-8010-f29bae5f8afa" />
